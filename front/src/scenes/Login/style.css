@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.container-login {
+    background-image: url('https://www.virtualoffice.com.br/img/slidesunidades/sala-de-reuniao-rio-de-janeiro.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    padding: 80px;
+}
+
+.form-login {
+    background-color: rgba(0, 0, 0, .6);
+    width: 600px;
+    padding: 100px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-login h1 {
+    margin-bottom: 30px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-login input {
+    margin-bottom: 30px;
+}
+
+.form-login button {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.form-login span {
+    color: white;
+    text-decoration: underline;
+}

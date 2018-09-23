@@ -1,0 +1,9 @@
+.container-home {
+    width: 400px;
+    text-align: start;
+    margin: 40px;
+}
+
+.container-home Input{
+    margin-bottom: 20px;
+}
