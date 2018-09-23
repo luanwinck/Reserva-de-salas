@@ -1,0 +1,10 @@
+.container-reserva {
+    width: 400px;
+    text-align: start;
+    margin: 40px;
+    margin: auto;
+}
+
+.container-reserva Input{
+    margin-bottom: 20px;
+}

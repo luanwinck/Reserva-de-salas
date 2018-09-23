@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+
+.header {
+    height: 50px;
+    width: 100%;
+    background: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+.header span {
+    font-size: 14pt;
+    font-family: 'Open Sans Condensed', sans-serif;
+    cursor: pointer;
+    width: 25%;
+}
+
+.header span:hover {
+    color: rgb(155, 155, 155);
+}

@@ -8,6 +8,7 @@ import axios from 'axios'
 import Loading from './components/generic/Loading/index'
 import Home from './scenes/Home/index'
 import Login from './scenes/Login/index'
+import Reserva from './scenes/Reserva/index'
 
 class App extends Component {
 
@@ -52,6 +53,7 @@ class App extends Component {
         <Switch>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/reserva" component={Reserva}/>
 
             <Redirect to="/home" />
         </Switch>
