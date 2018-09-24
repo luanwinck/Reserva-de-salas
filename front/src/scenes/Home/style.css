@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+.container-home {
+    width: 100%;
+    height: 600px;
+    background: url('http://www.wecompany.com.br/wp-content/uploads/2018/02/wecompany-coworking-sala-de-reuniao-2-f2.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-home h1 {
+    font-size: 90pt;
+    color: white;
+    text-shadow: 4px 3px 2px rgba(150, 150, 150, 1);
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.container-home span {
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    cursor: pointer;
+}
+
+.container-home-secondary {
+    height: 1000px;
+}

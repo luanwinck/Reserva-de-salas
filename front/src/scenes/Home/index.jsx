@@ -66,9 +66,11 @@ if (this.state.shouldRedirectLogin) {
 return (
     <div>
         <Header disabledHome={true}/>
-        <h1>Home</h1>
-        <Button color='danger' onClick={this._logout}>Logout</Button>
-        <div className="container-home">
+        <div className="container-home">    
+            <h1>RESERVA DE SALAS</h1>
+            <span onClick={this._logout}>Logout</span>
+        </div>
+        <div className="container-home-secondary">
         </div>
     </div>
 );

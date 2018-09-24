@@ -60,9 +60,6 @@ getCategoriesOptions() {
 
 
 render() {
-if (this.state.shouldRedirectLogin) {
-    return <Redirect to="/login" />
-}
 
 return (
     <div>

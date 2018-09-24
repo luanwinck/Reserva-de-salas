@@ -1,0 +1,10 @@
+.container-salas {
+    width: 400px;
+    text-align: start;
+    margin: 40px;
+    margin: auto;
+}
+
+.container-salas Input{
+    margin-bottom: 20px;
+}

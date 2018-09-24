@@ -9,6 +9,7 @@ import Loading from './components/generic/Loading/index'
 import Home from './scenes/Home/index'
 import Login from './scenes/Login/index'
 import Reserva from './scenes/Reserva/index'
+import Salas from './scenes/Salas/index'
 
 class App extends Component {
 
@@ -54,6 +55,7 @@ class App extends Component {
             <Route exact path="/home" component={Home}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/reserva" component={Reserva}/>
+            <Route exact path="/salas" component={Salas}/>
 
             <Redirect to="/home" />
         </Switch>
