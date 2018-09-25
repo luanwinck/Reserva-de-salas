@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
-import { Button, Input } from 'reactstrap'
+import { Alert, Button, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Select from '../../components/generic/Select/index'
 import Header from '../../components/Header/index'
 
@@ -11,6 +11,8 @@ import './style.css'
 
 import GetSalasService from '../../services/GetSalasService'
 import CadastrarAlteraSala from '../../services/CadastrarAlterarSalaService'
+import DeletarSala from '../../services/DeletarSalaService'
+import DeletarSalaService from '../../services/DeletarSalaService';
 
 export default class Salas extends Component {
   constructor(props) {
@@ -20,7 +22,9 @@ export default class Salas extends Component {
         nome: '',
         descricao: '',
         textButton: 'Adicionar',
-        salas: []
+        salas: [],
+        salaASerExcluida: { nome: ''},
+        modal: false,
     };
     this.handleChange = this.handleChange.bind(this)
 }
@@ -71,6 +75,23 @@ goCadastrarAlterarProduto = () => {
     this.getSalas()
 }
 
+goDeletarSala = () => {
+    DeletarSalaService
+        .deletarSala(this.state.salaASerExcluida.id)
+        .then((result) => {
+            this.setState({
+                salaASerExcluida: {},
+            })
+        }).catch((err) => {
+        })
+    this.setState({
+        salaASerExcluida: {},
+        modal:false,
+    })
+        
+    this.getSalas()
+}
+
 onClickAlterarSala(sala) {
     this.setState({
         id: sala.id,
@@ -78,6 +99,29 @@ onClickAlterarSala(sala) {
         descricao: sala.descricao,
         textButton: 'Alterar'
     })
+}
+
+toggle = (salaASerExcluida) => {
+    this.setState({
+        modal: !this.state.modal,
+        salaASerExcluida
+    });
+}
+
+
+renderModal() {
+    return (
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>Aviso</ModalHeader>
+            <ModalBody>
+                Você deseja realmente excluir a sala <b>{this.state.salaASerExcluida.nome}</b>?
+            </ModalBody>
+            <ModalFooter>
+                <Button color="danger" onClick={this.goDeletarSala}>Excluir</Button>
+                <Button color="secondary" onClick={this.toggle}>Cancelar</Button>
+            </ModalFooter>
+        </Modal>    
+    )
 }
 
 renderSalas() {
@@ -90,7 +134,7 @@ renderSalas() {
                     <td className="sala-coluna">
                         <span className="button-sala" onClick={() => this.onClickAlterarSala(sala)}>Editar</span>
                         <br/><br/>
-                        <span className="button-sala">Excluir</span>
+                        <span className="button-sala" onClick={() => this.toggle(sala)}>Excluir</span>
                     </td>
                 </tr>
             })}
@@ -102,6 +146,7 @@ render() {
 
 return (
     <div>
+        {this.renderModal()}
         <Header disabledSalas={true}/>
         <h1>Cadastre uma sala</h1>
         <div className="container-salas">
@@ -127,8 +172,6 @@ return (
                 >
                     {this.state.textButton}
                 </Button>
-
-                
             </div>
             <div className="container-tabela-salas">
                 <Table striped>

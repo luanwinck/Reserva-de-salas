@@ -35,8 +35,6 @@ exports.delete = (req, res, next) => {
     let id = req.params.id;
 
     deletarSala.deleteSalaService(id)
-    .then((salas) => {
-        console.log(salas)
-        res.status(200).send(salas);
-    })
+  
+    res.status(200).send();
 };
