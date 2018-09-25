@@ -68,11 +68,11 @@ goCadastrarAlterarProduto = () => {
                 descricao: '',
                 textButton: 'Adicionar',
             })
+            this.getSalas()
             console.log(result.data)
         }).catch((err) => {
         })
 
-    this.getSalas()
 }
 
 goDeletarSala = () => {
@@ -82,14 +82,13 @@ goDeletarSala = () => {
             this.setState({
                 salaASerExcluida: {},
             })
+            this.getSalas()
         }).catch((err) => {
         })
     this.setState({
         salaASerExcluida: {},
         modal:false,
-    })
-        
-    this.getSalas()
+    })       
 }
 
 onClickAlterarSala(sala) {
