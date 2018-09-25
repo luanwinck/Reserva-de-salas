@@ -1,4 +1,8 @@
 .container-salas {
+    display: flex;
+}
+
+.container-form-salas {
     width: 400px;
     text-align: start;
     margin: 40px;
@@ -7,4 +11,23 @@
 
 .container-salas Input{
     margin-bottom: 20px;
+}
+
+.sala-coluna {
+    padding: 100px;
+}
+
+.button-sala {
+    cursor: pointer;
+}
+
+.button-save-sala {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.container-tabela-salas{
+    max-width: 600px;
+    margin-right: 100px;
+    margin-top: 50px;
 }
