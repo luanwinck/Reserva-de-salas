@@ -1,13 +1,11 @@
-var dbconfig=require("../dbconfig.js")
+const dbconfig = require("../dbconfig.js")
 
 function getSalasService() {
 
     return new Promise(function(resolve, reject) {
 
-        var sql = ' SELECT * FROM salas';
-            
-        console.log(sql)
-        
+        const sql = ' SELECT * FROM salas';
+                    
         dbconfig.conexao.query(sql, function (err, result, fields) {
             
             //  if (err) throw reject(err);                           
