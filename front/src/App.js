@@ -57,7 +57,7 @@ class App extends Component {
             <Route exact path="/reserva" component={Reserva}/>
             <Route exact path="/salas" component={Salas}/>
 
-            <Redirect to="/home" />
+            <Redirect to="/login" />
         </Switch>
         </div>
       </div>

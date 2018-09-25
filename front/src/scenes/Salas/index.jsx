@@ -113,7 +113,7 @@ renderModal() {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Aviso</ModalHeader>
             <ModalBody>
-                Você deseja realmente excluir a sala <b>{this.state.salaASerExcluida.nome}</b>?
+                Você deseja realmente excluir a <b>{this.state.salaASerExcluida.nome}</b>?
             </ModalBody>
             <ModalFooter>
                 <Button color="danger" onClick={this.goDeletarSala}>Excluir</Button>
