@@ -1,17 +1,15 @@
 const dbconfig = require("../dbconfig.js")
 const mysql = require('mysql')
 
-function cadastrarUsuarioService(sala) {
-
-    console.log(sala)
+function cadastrarUsuarioService(usuario) {
 
     let sql = 'insert into usuario (nome, email, senha, permissao, funcao)' 
         sql +='values ('
-        sql +=  mysql.escape(sala.nome) + ',' + 
-                mysql.escape(sala.email) + ',' + 
-                mysql.escape(sala.senha) + ',' + 
-                mysql.escape(sala.permissao) + ',' + 
-                mysql.escape(sala.funcao) + ',' + 
+        sql +=  mysql.escape(usuario.nome) + ',' + 
+                mysql.escape(usuario.email) + ',' + 
+                mysql.escape(usuario.senha) + ',' + 
+                mysql.escape(usuario.permissao) + ',' + 
+                mysql.escape(usuario.funcao) + ',' + 
         ')';
 
     dbconfig.conexao.query(sql, function (err, result) {
