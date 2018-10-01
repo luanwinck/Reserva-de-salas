@@ -50,7 +50,7 @@ class Header extends Component {
                 <span onClick={this._home}>Home</span>
                 <span onClick={this._salas}>Salas</span>
                 <span onClick={this._reserva}>Reserva</span>
-                <span>Sobre</span>
+                <span>Solicitações</span>
             </div>
         );
     }

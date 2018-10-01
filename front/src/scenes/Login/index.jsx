@@ -5,11 +5,12 @@ import { Row, Input, Button } from 'reactstrap'
 
 import './style.css'
 
-export default class Loading extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shouldRedirectHome: false
+      shouldRedirectHome: false,
+      shouldRedirectRegistrar: false,
     };
   }
 
@@ -18,17 +19,26 @@ export default class Loading extends Component {
         shouldRedirectHome: true
     });
   };
+
+  _registrar = () => {
+    this.setState({
+        shouldRedirectRegistrar: true
+    });
+  };
   
 
   render() {
     if (this.state.shouldRedirectHome) {
         return <Redirect to="/home" />
-    }
+    } else if (this.state.shouldRedirectRegistrar) {
+      return <Redirect to="/registrar" />
+  }
 
     return (
       <div className="container-login">
         <div className="form-login">
           <h1>Reserva de salas</h1>
+          {/* <span className="alert">Email ou senha incorretos</span> */}
           <Input
               label="E-mail"
               value={this.state.email}
@@ -38,7 +48,6 @@ export default class Loading extends Component {
               type="email"
           />
           <Input
-              label="E-mail"
               value={this.state.email}
               name="email"
               placeholder="Digite sua senha"
@@ -46,7 +55,7 @@ export default class Loading extends Component {
               type="password"
           />
           <Button color='secundary' onClick={this._login}>Login</Button>
-          <span>Cadastre-se</span>
+          <span className="link" onClick={this._registrar}>Cadastre-se</span>
         </div>
       </div>
     );

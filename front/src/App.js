@@ -10,6 +10,7 @@ import Home from './scenes/Home/index'
 import Login from './scenes/Login/index'
 import Reserva from './scenes/Reserva/index'
 import Salas from './scenes/Salas/index'
+import Registrar from './scenes/Registrar/index'
 
 class App extends Component {
 
@@ -47,19 +48,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-        <div className="App--content">
         {this.state.loading && <Loading />}
 
         <Switch>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/registrar" component={Registrar}/>
             <Route exact path="/reserva" component={Reserva}/>
             <Route exact path="/salas" component={Salas}/>
 
             <Redirect to="/login" />
         </Switch>
-        </div>
       </div>
     );
   }

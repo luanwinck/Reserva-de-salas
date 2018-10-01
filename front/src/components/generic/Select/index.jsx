@@ -1,4 +1,7 @@
 import React from 'react'
+
+import './style.css'
+
 export default class Select extends React.Component {
 
     renderOptions() {
@@ -10,7 +13,7 @@ export default class Select extends React.Component {
     render() {
         return <div className="form-group">
             <label >{this.props.label}</label>
-            <select name={this.props.name} onChange={this.props.handdleChange} className="form-control" >
+            <select name={this.props.name} onChange={this.props.handdleChange} className="form-control select" >
                 {this.renderOptions()}
             </select>
         </div>
