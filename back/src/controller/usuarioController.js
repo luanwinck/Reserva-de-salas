@@ -5,7 +5,7 @@ const cadastrarUsuario = require('../service/usuarioService/cadastrarUsuarioServ
 exports.login = (req, res, next) => {
 
     login.loginService()
-        .then((salas) => {
+        .then(() => {
             res.status(200).send();
         })
         .catch(() => {

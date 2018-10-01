@@ -10,13 +10,13 @@ app.use(bodyParser.json())
 app.use(cors())
 
 const index = require('./routes/index');
-const produtoRoute = require('./routes/produtoRoute');
 const usuarioRoute = require('./routes/usuarioRoute');
 const salasRoute = require('./routes/salasRoute');
+const reservaRoute = require('./routes/reservaRoute');
 
 app.use('/', index);
-app.use('/produto', produtoRoute);
 app.use('/usuario', usuarioRoute);
 app.use('/salas', salasRoute);
+app.use('/reservas', reservaRoute);
 
 module.exports = app;

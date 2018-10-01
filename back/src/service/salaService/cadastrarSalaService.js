@@ -3,8 +3,6 @@ const mysql = require('mysql')
 
 function cadastrarSalaService(sala) {
 
-    console.log(sala)
-
     let sql = 'insert into salas (nome , descricao) ';
         sql +='values ('+ mysql.escape(sala.nome) + ',' + mysql.escape(sala.descricao) +')';
 
