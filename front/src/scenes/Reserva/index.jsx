@@ -18,17 +18,13 @@ export default class Reserva extends Component {
         data: '',
         horaInicial: '',
         horaFinal: '',
-        sala: 1,
+        sala: '',
         descricao: '',
         validateDataInicial: '',
         valiadteDataFinal: '',
         salas: [],
     };
     this.handleChange = this.handleChange.bind(this)
-}
-
-componentDidMount() {
-    this.getSalas()
 }
 
 getSalas() {
@@ -49,7 +45,23 @@ handleChange(event) {
     this.setState({
         [name]: value
     })
-    console.log(this.state.sala)
+    if (name === 'data' ||
+        name === 'horaInicial' ||
+        name === 'horaFinal'
+    ) {
+        this.verifyDateCompleted()
+    }
+}
+
+verifyDateCompleted() {
+    const reserva = this.state
+
+    if (reserva.data.length === 10 &&
+        reserva.horaInicial.length === 5 &&
+        reserva.horaFinal.length === 5
+    ) {
+        this.getSalas()
+    }
 }
 
 
@@ -60,16 +72,20 @@ _logout = () => {
 };
 
 validateDate() {
-
+    
 }
 
 getCategoriesOptions() {
-    return this.state.salas.map(sala => {
+    return [{
+            value: '',
+            text: 'Nenhuma sala selecionada',
+        }].concat(
+    this.state.salas.map(sala => {
         return {
             value: sala.id,
             text: sala.nome,
         }
-    })
+    }))
 }
 
 goCadastrarReserva = () => {
