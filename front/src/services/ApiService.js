@@ -29,6 +29,17 @@ class ApiService {
     static deletarSala(id) {
         return axios.delete(`${CONFIG.API_URL_BASE}/salas/deletar/${id}`, configHeader)
     }
+
+    static cadastrarReserva(idSala, idUsuario, data, horaInicial, horaFinal, descricao) {
+        return axios.post(`${CONFIG.API_URL_BASE}/reservas/cadastrar`, {
+            idSala, 
+            idUsuario, 
+            data, 
+            horaInicial, 
+            horaFinal,
+            descricao
+            }, configHeader)
+    }
 }
 
 export default ApiService
