@@ -1,29 +1,22 @@
-const usuarioService = require('../service/usuarioService')
+const login = require('../service/usuarioService/loginService')
+const cadastrarUsuario = require('../service/usuarioService/cadastrarUsuarioService')
 
 
-exports.get = (req, res, next) => {
-    let user = req.params.user;
+exports.login = (req, res, next) => {
 
-    let usuariosFiltrados = getUsuario(user)
-
-    res.status(200).send(usuariosFiltrados);
+    login.loginService()
+        .then((salas) => {
+            res.status(200).send();
+        })
+        .catch(() => {
+            res.status(404).send();
+        })
 };
 
 exports.registrar = (req, res) => {
     let usuario = req.body 
 
-    usuarioService.adicionarUsuario(usuario)
+    cadastrarUsuario.cadastrarUsuarioService(usuario)
 
     res.status(201).send(usuario);
-};
-
-exports.login = (req, res) => {
-    let usuario = req.body 
-
-    let resposta = usuarioService.login(usuario)
-    console.log(resposta)
-    if (!resposta) {
-        res.status(400).send();
-    }
-    res.status(201).send(resposta);
 };

@@ -7,10 +7,10 @@ const deletarSala = require('../service/salaService/deleteSalaService')
 exports.get = (req, res, next) => {
 
     getSalas.getSalasService()
-    .then((salas) => {
-        console.log(salas)
-        res.status(200).send(salas);
-    })
+        .then((salas) => {
+            console.log(salas)
+            res.status(200).send(salas);
+        })
 };
 
 exports.post = (req, res, next) => {
