@@ -11,7 +11,6 @@ import './style.css'
 
 import GetSalasService from '../../services/GetSalasService'
 import CadastrarAlteraSala from '../../services/CadastrarAlterarSalaService'
-import DeletarSala from '../../services/DeletarSalaService'
 import DeletarSalaService from '../../services/DeletarSalaService';
 
 export default class Salas extends Component {

@@ -48,6 +48,10 @@ class ApiService {
             descricao
             }, configHeader)
     }
+    
+    static getReservas() {
+        return axios.get(`${CONFIG.API_URL_BASE}/reservas/`, configHeader)
+    }
 }
 
 export default ApiService

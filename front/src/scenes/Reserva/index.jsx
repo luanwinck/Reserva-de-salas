@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
-import { Button, Input } from 'reactstrap'
+import { Button, Input, Table } from 'reactstrap'
 import Select from '../../components/generic/Select/index'
 import Header from '../../components/Header/index'
 import CardSala from '../../components/CardSala/index'
@@ -10,6 +10,7 @@ import './style.css'
 
 import GetSalasDisponiveisService from '../../services/GetSalasDisponiveisService'
 import CadastrarReservaService from '../../services/CadastrarReservaService'
+import GetReservasService from '../../services/GetReservasService'
 
 export default class Reserva extends Component {
   constructor(props) {
@@ -23,9 +24,27 @@ export default class Reserva extends Component {
         descricao: '',
         validateDataInicial: '',
         valiadteDataFinal: '',
-        salas: [],
+				salas: [],
+				reservas: [],
     };
     this.handleChange = this.handleChange.bind(this)
+}
+
+
+componentDidMount() {
+	this.getReservas()
+}
+
+getReservas() {
+	GetReservasService
+			.getReservas()
+			.then((result) => {
+					this.setState({
+							reservas: result.data
+					})
+					console.log(result.data)
+			}).catch((err) => {
+			})
 }
 
 getSalas = () => {
@@ -98,11 +117,12 @@ goCadastrarReserva = () => {
                 data: '',
                 horaInicial: '',
                 horaFinal: '',
-                descricao: '',
+								descricao: '',
+								salas: [],
             })
-            console.log(result.data)
         }).catch((err) => {
-        })
+				})
+		this.getReservas()
 }
 
 selectSala = id => {
@@ -203,15 +223,45 @@ renderForm() {
 	)
 }
 
+renderReservas() {
+	return(
+			<tbody>
+					{this.state.reservas.map(reserva => {
+							return <tr>
+									<td className="sala-coluna">{reserva.descricao}</td>
+									<td className="sala-coluna">{reserva.data_inicial}</td>
+									<td className="sala-coluna">{reserva.data_final}</td>
+									<td className="sala-coluna">{reserva.usuario}</td>
+									<td className="sala-coluna">{reserva.sala}</td>
+							</tr>
+					})}
+			</tbody>
+	)
+}
+
 render() {
     return (
         <div>
             <Header disabledReserva={true}/>
             <h1>Reserve uma sala</h1>
             <div className="container-reserva">
-                {this.renderForm()}
-                {this.renderSalas()}
+								{this.renderForm()}
+								<div className="tabela-reservas">
+									<Table striped>
+											<thead>
+											<tr className="sala-coluna">
+													<th className="sala-coluna">Descrição da reserva</th>
+													<th className="sala-coluna">Data inicial</th>
+													<th className="sala-coluna">Data final</th>
+													<th className="sala-coluna">Usuário</th>
+													<th className="sala-coluna">Sala</th>
+											</tr>
+											</thead>
+											{this.renderReservas()}
+									</Table>
+								</div>
             </div>
+						{this.renderSalas()}
         </div>
     );
   }
