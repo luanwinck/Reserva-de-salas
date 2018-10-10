@@ -1,4 +1,5 @@
 const getSalas = require('../service/salaService/getSalasService')
+const getSalasDisponiveis = require('../service/salaService/getSalasDisponiveisService')
 const cadastrarSala = require('../service/salaService/cadastrarSalaService')
 const editarSala = require('../service/salaService/editarSalaService')
 const deletarSala = require('../service/salaService/deleteSalaService')
@@ -7,6 +8,16 @@ const deletarSala = require('../service/salaService/deleteSalaService')
 exports.get = (req, res, next) => {
 
     getSalas.getSalasService()
+        .then((salas) => {
+            console.log(salas)
+            res.status(200).send(salas);
+        })
+};
+
+exports.getSalasDisponiveis = (req, res, next) => {
+    let reserva = req.body
+
+    getSalasDisponiveis.getSalasDisponiveisService(reserva)
         .then((salas) => {
             console.log(salas)
             res.status(200).send(salas);

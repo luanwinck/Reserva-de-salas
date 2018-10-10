@@ -11,6 +11,14 @@ class ApiService {
         return axios.get(`${CONFIG.API_URL_BASE}/salas/`, configHeader)
     }
 
+    static getSalasDisponiveis(data, horaInicial, horaFinal) {
+        return axios.post(`${CONFIG.API_URL_BASE}/salas/disponiveis`, {
+            data, 
+            horaInicial, 
+            horaFinal,
+            }, configHeader)
+    }
+
     static cadastrarAlterarSala(id, nome, descricao) {  
 
         if (id) {

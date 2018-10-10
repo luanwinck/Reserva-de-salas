@@ -1,10 +1,25 @@
 .container-reserva {
-    width: 400px;
     text-align: start;
     margin: 40px;
     margin: auto;
+    display: flex;
 }
 
 .container-reserva Input{
     margin-bottom: 20px;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: 200px;
+}
+
+.container-salas-disponiveis {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 600px;
+    margin-left: 200px;
 }

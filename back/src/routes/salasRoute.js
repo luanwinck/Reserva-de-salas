@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require('../controller/salasController')
 router.get('/', controller.get);
 router.post('/cadastrar', controller.post);
+router.post('/disponiveis', controller.getSalasDisponiveis);
 router.put('/editar', controller.put);
 router.delete('/deletar/:id', controller.delete);
 
