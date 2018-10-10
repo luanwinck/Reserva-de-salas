@@ -12,6 +12,8 @@ import GetSalasDisponiveisService from '../../services/GetSalasDisponiveisServic
 import CadastrarReservaService from '../../services/CadastrarReservaService'
 import GetReservasService from '../../services/GetReservasService'
 
+import moment from 'moment'
+
 export default class Reserva extends Component {
   constructor(props) {
     super(props);
@@ -223,14 +225,18 @@ renderForm() {
 	)
 }
 
+formatDate = date => {
+	return moment(date, 'YYYY-MM-DD hh:mm:ss').format('DD/MM/YYYY HH:mm')
+}
+
 renderReservas() {
 	return(
 			<tbody>
 					{this.state.reservas.map(reserva => {
 							return <tr>
 									<td className="sala-coluna">{reserva.descricao}</td>
-									<td className="sala-coluna">{reserva.data_inicial}</td>
-									<td className="sala-coluna">{reserva.data_final}</td>
+									<td className="sala-coluna">{this.formatDate(reserva.data_inicial)}</td>
+									<td className="sala-coluna">{this.formatDate(reserva.data_final)}</td>
 									<td className="sala-coluna">{reserva.usuario}</td>
 									<td className="sala-coluna">{reserva.sala}</td>
 							</tr>
