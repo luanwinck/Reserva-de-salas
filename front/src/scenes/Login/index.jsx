@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 
 import { Row, Input, Button } from 'reactstrap'
 
+import LoginService from '../../services/LoginService'
+
 import './style.css'
 
 export default class Login extends Component {
@@ -19,6 +21,23 @@ export default class Login extends Component {
         shouldRedirectHome: true
     });
   };
+
+  _onClickLoginButton = () => {
+    const account = this.state
+    LoginService.
+      login(account.email, account.password)
+      .then((result) => {
+          localStorage.setItem('accessToken',result.data.accessToken) 
+          this.setState({
+              shouldRedirectHome: true
+          })
+      }).catch((err) => {
+          this.setState({
+              error: err.response.data.error
+          })
+      })
+  }
+
 
   _registrar = () => {
     this.setState({

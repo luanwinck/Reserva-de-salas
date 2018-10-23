@@ -7,6 +7,13 @@ const configHeader = { headers: {
 
 class ApiService {
 
+    static login(email, senha) {
+        return axios.post(`${CONFIG.API_URL_BASE}/usuario/login`, {
+            email, 
+            senha, 
+            }, configHeader)
+    }
+
     static getSalas() {
         return axios.get(`${CONFIG.API_URL_BASE}/salas/`, configHeader)
     }
