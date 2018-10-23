@@ -13,6 +13,7 @@ import CadastrarReservaService from '../../services/CadastrarReservaService'
 import GetReservasService from '../../services/GetReservasService'
 
 import moment from 'moment'
+import jwt_decode from 'jwt-decode';
 
 export default class Reserva extends Component {
   constructor(props) {
@@ -109,7 +110,13 @@ goCadastrarReserva = () => {
         reserva.horaFinal === '' ||
         reserva.sala === '' ||
         reserva.descricao === ''
-    ) { return }
+	) { return }
+	
+	// const token = localStorage.getItem("accesToken");
+	// const decoded = jwt_decode(token);
+	// const roles = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+
+	// const id = roles[1]
 
     CadastrarReservaService
         .cadastrarReserva(reserva.sala, 1, reserva.data, reserva.horaInicial, reserva.horaFinal, reserva.descricao)

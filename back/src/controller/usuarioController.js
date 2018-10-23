@@ -1,20 +1,24 @@
 const login = require('../service/usuarioService/loginService')
 const cadastrarUsuario = require('../service/usuarioService/cadastrarUsuarioService')
+const authService = require('../service/authService/authService')
 
 
 exports.login = (req, res, next) => {
+    const usuario = req.body 
 
-    login.loginService()
-        .then(() => {
-            res.status(200).send();
+    login.loginService(usuario)
+        .then((usuario) => {
+            const token = authService.getToken(usuario.email, usuario.id)
+
+            res.status(200).send({token});
         })
         .catch(() => {
-            res.status(404).send();
+            res.status(404).send("Email ou senha incorretos");
         })
 };
 
 exports.registrar = (req, res) => {
-    let usuario = req.body 
+    const usuario = req.body 
 
     cadastrarUsuario.cadastrarUsuarioService(usuario)
 
