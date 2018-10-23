@@ -14,6 +14,8 @@ export default class Login extends Component {
       shouldRedirectHome: false,
       shouldRedirectRegistrar: false,
     };
+
+    this.handleChange = this.handleChange.bind(this)
   }
 
   _login = () => {
@@ -21,6 +23,15 @@ export default class Login extends Component {
         shouldRedirectHome: true
     });
   };
+
+  handleChange(event) {
+    const target = event.target
+    const value = target.value
+    const name = target.name
+    this.setState({
+        [name]: value
+    })
+}
 
   _onClickLoginButton = () => {
     const account = this.state
@@ -63,17 +74,17 @@ export default class Login extends Component {
               value={this.state.email}
               name="email"
               placeholder="Digite seu e-mail"
-              handleChange={this.handleChange}
+              onChange={this.handleChange}
               type="email"
           />
           <Input
               value={this.state.email}
               name="email"
               placeholder="Digite sua senha"
-              handleChange={this.handleChange}
+              onChange={this.handleChange}
               type="password"
           />
-          <Button color='secundary' onClick={this._login}>Login</Button>
+          <Button color='secundary' onClick={this._onClickLoginButton}>Login</Button>
           <span className="link" onClick={this._registrar}>Cadastre-se</span>
         </div>
       </div>

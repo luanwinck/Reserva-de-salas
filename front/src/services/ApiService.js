@@ -1,9 +1,11 @@
 import CONFIG from '../config'
 import axios from 'axios'
 
+const token = localStorage.getItem('accessToken')
 const configHeader = { headers: { 
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*' } };
+    'Access-Control-Allow-Origin': '*',
+    'x-access-token': token ? token : '' } };
 
 class ApiService {
 
