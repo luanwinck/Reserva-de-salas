@@ -6,11 +6,12 @@ function loginService(usuario) {
     return new Promise(function(resolve, reject) {
 
         const sql = ' SELECT * FROM usuarios WHERE email ='+ mysql.escape(usuario.email) +' AND senha ='+ mysql.escape(usuario.senha);
-        console.log(sql)
                     
         dbconfig.conexao.query(sql, function (err, result, fields) {
+            console.log(sql)
             
-            if (err) return reject(err);                           
+            if (err) throw reject(err);    
+            console.log(err)                       
              
             return resolve(JSON.parse(JSON.stringify(result)));
               

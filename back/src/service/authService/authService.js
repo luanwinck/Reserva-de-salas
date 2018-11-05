@@ -11,7 +11,6 @@ function getToken(email, id) {
 
 function verifyToken(req, res, next){
     var token = req.headers['x-access-token'];
-    console.log(token);
 
     if (!token) 
         return res.status(401).send({ auth: false, message: "Não foi fornecido um token" });

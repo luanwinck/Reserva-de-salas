@@ -10,6 +10,9 @@ exports.login = (req, res, next) => {
         .then((usuario) => {
             const token = authService.getToken(usuario.email, usuario.id)
 
+            if (usuario.length <= 0) {
+                res.status(404).send("Email ou senha incorretos");                
+            }
             res.status(200).send({token});
         })
         .catch(() => {

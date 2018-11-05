@@ -20,7 +20,10 @@ class App extends Component {
     this.state = {
       loading: false
     };
+
+    this.token = localStorage.getItem('accessToken')
   }
+
 
   axiosConfig() {
     const self = this
@@ -49,6 +52,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.loading && <Loading />}
+        {!this.token && <Redirect to="/login" />}
 
         <Switch>
             <Route exact path="/home" component={Home}/>

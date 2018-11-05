@@ -1,11 +1,20 @@
 import CONFIG from '../config'
 import axios from 'axios'
 
+const token = localStorage.getItem('accessToken')
 const configHeader = { headers: { 
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*' } };
+    'Access-Control-Allow-Origin': '*',
+    'x-access-token': token ? token : '' } };
 
 class ApiService {
+
+    static login(email, senha) {
+        return axios.post(`${CONFIG.API_URL_BASE}/usuario/login`, {
+            email, 
+            senha, 
+            }, configHeader)
+    }
 
     static getSalas() {
         return axios.get(`${CONFIG.API_URL_BASE}/salas/`, configHeader)
