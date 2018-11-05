@@ -29,6 +29,7 @@ export default class Home extends Component {
   }
 
   _logout = () => {
+    localStorage.removeItem('accessToken')
     this.setState({
       shouldRedirectLogin: true
     });

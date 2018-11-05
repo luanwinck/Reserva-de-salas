@@ -13,7 +13,9 @@ export default class Login extends Component {
     this.state = {
       shouldRedirectHome: false,
       shouldRedirectRegistrar: false,
-      error: ""
+      email: '', 
+      senha: '',
+      error: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,17 +37,23 @@ export default class Login extends Component {
   }
 
   _onClickLoginButton = () => {
-    const account = this.state;
-    LoginService.login(account.email, account.password)
+    const account = this.state
+
+    if (!account.email || !account.senha) {
+      return
+    }
+
+    LoginService.login(account.email, account.senha)
       .then(result => {
-        localStorage.setItem("accessToken", result.data.accessToken);
+        localStorage.setItem("accessToken", result.data.token);
         this.setState({
-          shouldRedirectHome: true
+          shouldRedirectHome: true,
+          error: false
         });
       })
       .catch(err => {
         this.setState({
-          error: err.response.data.error
+          error: true
         });
       });
   };
@@ -79,8 +87,8 @@ export default class Login extends Component {
             type="email"
           />
           <Input
-            value={this.state.email}
-            name="email"
+            value={this.state.senha}
+            name="senha"
             placeholder="Digite sua senha"
             onChange={this.handleChange}
             type="password"
