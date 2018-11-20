@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Redirect } from "react-router-dom";
 
 import { Button, Input, Table } from "reactstrap";
@@ -28,7 +28,8 @@ export default class Reserva extends Component {
       validateDataInicial: "",
       valiadteDataFinal: "",
       salas: [],
-      reservas: []
+      reservas: [],
+      filter: "Últimas reservas",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -72,7 +73,7 @@ export default class Reserva extends Component {
     const name = target.name;
     this.setState({
       [name]: value
-    });
+    })
   }
 
   verifyDateCompleted() {
@@ -236,27 +237,46 @@ export default class Reserva extends Component {
   }
 
   formatDate = date => {
-    return moment(date, "YYYY-MM-DD hh:mm:ss").format("DD/MM/YYYY HH:mm");
+    return moment(date.split('.')[0], "YYYY-MM-DD hh:mm:ss").format("DD/MM/YYYY HH:mm");
   };
 
+  getReservasMapeadas = () => {
+    const { reservas } = this.state
+
+    return reservas.map(reserva => {
+      return {
+        ...reserva,
+        data_inicial: this.formatDate(reserva.data_inicial),
+        data_final: this.formatDate(reserva.data_final),
+      }
+    })
+  }
+
   renderReservas() {
+    const { filter } = this.state
+    const data = filter === "Últimas reservas" ? moment(new Date().getTime()).format("DD/MM/YYYY HH:mm") : ''
+    console.log(filter)
+    console.log(data)
+
     return (
       <tbody>
-        {this.state.reservas.map(reserva => {
-          return (
-            <tr>
-              <td className="sala-coluna">{reserva.descricao}</td>
-              <td className="sala-coluna">
-                {this.formatDate(reserva.data_inicial)}
-              </td>
-              <td className="sala-coluna">
-                {this.formatDate(reserva.data_final)}
-              </td>
-              <td className="sala-coluna">{reserva.usuario}</td>
-              <td className="sala-coluna">{reserva.sala}</td>
-            </tr>
-          );
-        })}
+        {this.getReservasMapeadas().filter(r => r.data_final > data)
+          .map(reserva => {
+            return (
+              <tr>
+                <td className="sala-coluna">{reserva.descricao}</td>
+                <td className="sala-coluna">
+                  {reserva.data_inicial}
+                </td>
+                <td className="sala-coluna">
+                  {reserva.data_final}
+                </td>
+                <td className="sala-coluna">{reserva.usuario}</td>
+                <td className="sala-coluna">{reserva.sala}</td>
+              </tr>
+            )
+          })
+        }
       </tbody>
     );
   }
@@ -269,6 +289,11 @@ export default class Reserva extends Component {
         <div className="container-reserva">
           {this.renderForm()}
           <div className="tabela-reservas">
+            <Select
+              options={[{ value: "Últimas reservas", text: "Últimas reservas" }, { value: "Histórico de reservas", text: "Histórico de reservas" }]}
+              name="filter"
+              handleChange={this.handleChange}
+            />
             <Table striped>
               <thead>
                 <tr className="sala-coluna">

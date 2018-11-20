@@ -4,7 +4,7 @@ const config = require('../../config.json')
 function getToken(email, id) {
     
     return jwt.sign({ email, id }, config.SigningKey, {
-        expiresIn: 300 // expires in 5min
+        expiresIn: 300000 // expires in 5min
     });
            
 }

@@ -13,7 +13,7 @@ export default class Select extends React.Component {
     render() {
         return <div className="form-group">
             <label >{this.props.label}</label>
-            <select name={this.props.name} onChange={this.props.handdleChange} className="form-control select" >
+            <select name={this.props.name} onChange={this.props.handleChange} className="form-control select" >
                 {this.renderOptions()}
             </select>
         </div>
