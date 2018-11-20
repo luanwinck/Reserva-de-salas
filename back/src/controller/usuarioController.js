@@ -8,7 +8,9 @@ exports.login = (req, res, next) => {
 
     login.loginService(usuario)
         .then((usuario) => {
-            const token = authService.getToken(usuario.email, usuario.id)
+            console.log(usuario.email)
+            const token = authService.getToken(usuario[0].email, usuario[0].id)
+
 
             if (usuario.length <= 0) {
                 res.status(404).send("Email ou senha incorretos");                

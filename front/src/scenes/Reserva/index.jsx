@@ -13,7 +13,7 @@ import CadastrarReservaService from "../../services/CadastrarReservaService";
 import GetReservasService from "../../services/GetReservasService";
 
 import moment from "moment";
-import jwt_decode from "jwt-decode";
+import jwt from 'jsonwebtoken'
 
 export default class Reserva extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ export default class Reserva extends Component {
         });
         console.log(result.data);
       })
-      .catch(err => {});
+      .catch(err => { });
   }
 
   getSalas = () => {
@@ -62,7 +62,7 @@ export default class Reserva extends Component {
             salas: this.mapSalas(result.data)
           });
         })
-        .catch(err => {});
+        .catch(err => { });
     }
   };
 
@@ -85,7 +85,7 @@ export default class Reserva extends Component {
     );
   }
 
-  validateDate() {}
+  validateDate() { }
 
   getCategoriesOptions() {
     return [
@@ -118,15 +118,14 @@ export default class Reserva extends Component {
       return;
     }
 
-    // const token = localStorage.getItem("accesToken");
-    // const decoded = jwt_decode(token);
-    // const roles = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+    const token = localStorage.getItem("accessToken");
 
-    // const id = roles[1]
+    const decoded = jwt.decode(token, { complete: true });
+    const id = decoded.payload.id
 
     CadastrarReservaService.cadastrarReserva(
       reserva.sala,
-      1,
+      id,
       reserva.data,
       reserva.horaInicial,
       reserva.horaFinal,
@@ -142,7 +141,7 @@ export default class Reserva extends Component {
           salas: []
         });
       })
-      .catch(err => {});
+      .catch(err => { });
     this.getReservas();
   };
 

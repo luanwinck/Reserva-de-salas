@@ -205,7 +205,7 @@ export default class Salas extends Component {
               </thead>
               {this.renderSalas()}
             </Table>
-          </div>
+          </div> 
         </div>
       </div>
     );

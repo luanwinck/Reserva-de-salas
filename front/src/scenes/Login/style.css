@@ -4,7 +4,7 @@
     background-image: url('https://www.virtualoffice.com.br/img/slidesunidades/sala-de-reuniao-rio-de-janeiro.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
+    height: 100vh;
     padding: 80px;
 }
 
@@ -17,6 +17,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
+    box-shadow: 17px 18px 11px rgba(50, 50, 50, 0.77)
 }
 
 .form-login h1 {

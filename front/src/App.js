@@ -55,13 +55,13 @@ class App extends Component {
         {!this.token && <Redirect to="/login" />}
 
         <Switch>
-            <Route exact path="/home" component={Home}/>
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/registrar" component={Registrar}/>
-            <Route exact path="/reserva" component={Reserva}/>
-            <Route exact path="/salas" component={Salas}/>
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/registrar" component={Registrar} />
+          <Route exact path="/reserva" component={Reserva} />
+          <Route exact path="/salas" component={Salas} />
 
-            <Redirect to="/login" />
+          {this.token ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Switch>
       </div>
     );
