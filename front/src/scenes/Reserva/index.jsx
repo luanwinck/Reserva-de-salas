@@ -29,9 +29,9 @@ export default class Reserva extends Component {
       valiadteDataFinal: "",
       salas: [],
       reservas: [],
-      filter: "Últimas reservas",
+      filter: "Próximas reservas",
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -237,7 +237,7 @@ export default class Reserva extends Component {
   }
 
   formatDate = date => {
-    return moment(date.split('.')[0], "YYYY-MM-DD hh:mm:ss").format("DD/MM/YYYY HH:mm");
+    return moment(date.split('.')[0], "YYYY-MM-DD hh:mm:ss").subtract(3, 'hours').format("DD/MM/YYYY HH:mm");
   };
 
   getReservasMapeadas = () => {
@@ -246,30 +246,36 @@ export default class Reserva extends Component {
     return reservas.map(reserva => {
       return {
         ...reserva,
-        data_inicial: this.formatDate(reserva.data_inicial),
+        data: this.formatDate(reserva.data_inicial).split(' ')[0],
+        hora_inicial: this.formatDate(reserva.data_inicial).split(' ')[1],
+        hora_final: this.formatDate(reserva.data_final).split(' ')[1],
         data_final: this.formatDate(reserva.data_final),
+        ano: moment(reserva.data_final).year()
       }
     })
   }
 
   renderReservas() {
     const { filter } = this.state
-    const data = filter === "Últimas reservas" ? moment(new Date().getTime()).format("DD/MM/YYYY HH:mm") : ''
+    const data = filter === "Próximas reservas" ? moment(new Date().getTime()).format("DD/MM/YYYY HH:mm") : ''
     console.log(filter)
     console.log(data)
 
     return (
       <tbody>
-        {this.getReservasMapeadas().filter(r => r.data_final > data)
+        {this.getReservasMapeadas().filter(r => r.data_final > data || r.ano > moment(new Date().getTime()).year())
           .map(reserva => {
             return (
               <tr>
                 <td className="sala-coluna">{reserva.descricao}</td>
                 <td className="sala-coluna">
-                  {reserva.data_inicial}
+                  {reserva.data}
                 </td>
                 <td className="sala-coluna">
-                  {reserva.data_final}
+                  {reserva.hora_inicial}
+                </td>
+                <td className="sala-coluna">
+                  {reserva.hora_final}
                 </td>
                 <td className="sala-coluna">{reserva.usuario}</td>
                 <td className="sala-coluna">{reserva.sala}</td>
@@ -290,7 +296,7 @@ export default class Reserva extends Component {
           {this.renderForm()}
           <div className="tabela-reservas">
             <Select
-              options={[{ value: "Últimas reservas", text: "Últimas reservas" }, { value: "Histórico de reservas", text: "Histórico de reservas" }]}
+              options={[{ value: "Próximas reservas", text: "Próximas reservas" }, { value: "Histórico de reservas", text: "Histórico de reservas" }]}
               name="filter"
               handleChange={this.handleChange}
             />
@@ -298,8 +304,9 @@ export default class Reserva extends Component {
               <thead>
                 <tr className="sala-coluna">
                   <th className="sala-coluna">Descrição da reserva</th>
-                  <th className="sala-coluna">Data inicial</th>
-                  <th className="sala-coluna">Data final</th>
+                  <th className="sala-coluna">Data</th>
+                  <th className="sala-coluna">Hora inicial</th>
+                  <th className="sala-coluna">Hora final</th>
                   <th className="sala-coluna">Usuário</th>
                   <th className="sala-coluna">Sala</th>
                 </tr>

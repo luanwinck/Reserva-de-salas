@@ -43,6 +43,7 @@
 .form-registrar .link {
     color: white;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .label {

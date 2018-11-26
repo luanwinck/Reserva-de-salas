@@ -13,7 +13,7 @@ export default class Login extends Component {
     this.state = {
       shouldRedirectHome: false,
       shouldRedirectRegistrar: false,
-      email: '', 
+      email: '',
       senha: '',
       error: false,
     };

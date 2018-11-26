@@ -60,13 +60,13 @@ export default class Home extends Component {
     }
 
     return (
-      <div>
+      <div className="container-home">
         <Header disabledHome={true} />
-        <div className="container-home">
+        <div className="content-home">
           <h1>RESERVA DE SALAS</h1>
           <span onClick={this._logout}>Logout</span>
         </div>
-        <div className="container-home-secondary" />
+        <div className="content-home-secondary" />
       </div>
     );
   }
