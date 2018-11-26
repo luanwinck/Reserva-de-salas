@@ -241,9 +241,9 @@ export default class Reserva extends Component {
   };
 
   getReservasMapeadas = () => {
-    const { reservas } = this.state
+    const { reservas, filter } = this.state
 
-    return reservas.map(reserva => {
+    const reservasMap =  reservas.map(reserva => {
       return {
         ...reserva,
         data: this.formatDate(reserva.data_inicial).split(' ')[0],
@@ -253,13 +253,13 @@ export default class Reserva extends Component {
         ano: moment(reserva.data_final).year()
       }
     })
+
+    return filter === "Próximas reservas" ? reservasMap : reservasMap.reverse()
   }
 
   renderReservas() {
     const { filter } = this.state
     const data = filter === "Próximas reservas" ? moment(new Date().getTime()).format("DD/MM/YYYY HH:mm") : ''
-    console.log(filter)
-    console.log(data)
 
     return (
       <tbody>
